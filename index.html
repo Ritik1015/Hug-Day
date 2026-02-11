@@ -2,79 +2,164 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>My Special Promise ❤️</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Hug Day Bhavya ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
-*{box-sizing:border-box;font-family:'Poppins',sans-serif;}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
 
 body{
-  margin:0;
   height:100vh;
   display:flex;
   justify-content:center;
   align-items:center;
-  background:linear-gradient(135deg,#ff758c,#ff7eb3);
-  color:#fff;
   text-align:center;
+  background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+  overflow:hidden;
+  flex-direction:column;
+  color:white;
 }
 
-.box{
+/* Floating Hearts */
+.heart{
+  position:absolute;
+  width:20px;
+  height:20px;
+  background:red;
+  transform:rotate(45deg);
+  animation:float 6s infinite ease-in;
+}
+
+.heart::before,
+.heart::after{
+  content:"";
+  width:20px;
+  height:20px;
+  background:red;
+  border-radius:50%;
+  position:absolute;
+}
+
+.heart::before{
+  top:-10px;
+  left:0;
+}
+
+.heart::after{
+  left:-10px;
+  top:0;
+}
+
+@keyframes float{
+  0%{bottom:-50px; opacity:1;}
+  100%{bottom:100vh; opacity:0;}
+}
+
+/* Card */
+.card{
+  background:rgba(255,255,255,0.15);
+  backdrop-filter:blur(10px);
   padding:30px;
-  max-width:400px;
-  animation:fadeIn 1.2s ease;
+  border-radius:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.2);
+  max-width:350px;
+  animation:fadeIn 2s ease;
 }
 
-h1{margin-bottom:20px;}
-
-.promise{
-  font-size:18px;
-  line-height:1.7;
-  margin-bottom:25px;
+h1{
+  font-size:28px;
+  margin-bottom:10px;
 }
 
-.love{
-  font-size:26px;
-  font-weight:700;
-  animation:beat 1s infinite;
+button{
+  margin-top:20px;
+  padding:10px 20px;
+  border:none;
+  border-radius:30px;
+  background:white;
+  color:#ff4b5c;
+  font-weight:bold;
+  cursor:pointer;
+  transition:0.3s;
 }
 
-.from{
-  margin-top:10px;
+button:hover{
+  transform:scale(1.1);
+  background:#ffe3e6;
+}
+
+.message{
+  margin-top:20px;
   font-size:14px;
-  opacity:.9;
+  display:none;
+  animation:fadeIn 2s ease;
 }
 
 @keyframes fadeIn{
-  from{opacity:0;transform:scale(.9);}
-  to{opacity:1;transform:scale(1);}
+  from{opacity:0; transform:translateY(20px);}
+  to{opacity:1; transform:translateY(0);}
 }
-@keyframes beat{
-  0%,100%{transform:scale(1);}
-  50%{transform:scale(1.2);}
+
+.footer{
+  margin-top:15px;
+  font-size:12px;
+  opacity:0.9;
 }
 </style>
 </head>
 
 <body>
 
-<audio src="song.mp3" autoplay loop></audio>
+<div class="card">
+  <h1>Happy Hug Day Bhavya 🤗❤️</h1>
+  <p>You are my safest place, my warmest hug, my forever comfort.</p>
+  
+  <button onclick="revealLove()">Click for a Hug 🤍</button>
 
-<div class="box">
-  <h1>Happy Promise Day ❤️</h1>
-
-  <div class="promise">
-    Mai zindagi bhar aapse pyaar krta rahunga  
-    <br><br>
-    No matter hum sath ho ya na ho,  
-    <br>
-    I will love you till my last breath.
+  <div class="message" id="loveMessage">
+    <p>
+      A hug from you feels like home.  
+      When you hold me, the world disappears.  
+      Your arms are my favorite place to stay.  
+      I wish I could pause time in that moment.  
+      If love had a shape, it would be your hug.  
+      Thank you for being my peace, my smile, my everything.  
+      I love you more than words can ever explain.
+    </p>
+    <div class="footer">Forever Yours, <b>From Dudu 💖</b></div>
   </div>
 
-  <div class="love">I Love You Bubu 💖</div>
-  <div class="from">— From dudu</div>
+  <button onclick="playSong()">Play Our Song 🎵</button>
 </div>
+
+<audio id="bgSong" src="song.mp3"></audio>
+
+<script>
+function revealLove(){
+  document.getElementById("loveMessage").style.display="block";
+}
+
+function playSong(){
+  var song = document.getElementById("bgSong");
+  song.play();
+}
+
+/* Create Floating Hearts */
+for(let i=0;i<20;i++){
+  let heart=document.createElement("div");
+  heart.classList.add("heart");
+  heart.style.left=Math.random()*100+"vw";
+  heart.style.animationDuration=(3+Math.random()*5)+"s";
+  document.body.appendChild(heart);
+}
+</script>
 
 </body>
 </html>
